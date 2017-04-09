@@ -1,0 +1,27 @@
+@import "variables";
+
+nav {
+  position: fixed;
+  top: 0;
+  right: 0;
+  background-color: lightblue;
+  padding: .2em;
+  width: 100vw;
+  height: $top-bar-ht;
+  display: flex;
+  justify-content: space-between;
+  div {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 10em;
+  }
+}
+
+.logo {
+  justify-content: flex-start;
+  img {
+    width: auto;
+    height: $top-bar-ht;
+  }
+}

@@ -1,10 +1,35 @@
+@import "css_reset";
+@import "top_bar";
+@import "subscriptions_menu";
 @import "post";
+@import "variables";
 
 body {
   font-family: "Philosopher", sans-serif;
   font-size: 20px;
 }
 
-a {
+a,button {
   cursor: pointer;
+}
+
+a {
+  color: navy;
+}
+
+button {
+  padding: .5em;
+  background-color: lightblue;
+  border-radius: .2em;
+}
+
+main {
+  margin: ($top-bar-ht + 1em) 0 0 $sidebar-width;
+}
+
+input[type="search"] {
+  max-width: 100%;
+  background-color: #efefef;
+  border-radius: .3em;
+  padding: .1em;
 }

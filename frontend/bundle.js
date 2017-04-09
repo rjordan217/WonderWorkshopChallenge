@@ -10416,6 +10416,10 @@ var _posts_index = __webpack_require__(245);
 
 var _posts_index2 = _interopRequireDefault(_posts_index);
 
+var _subscriptions_menu = __webpack_require__(253);
+
+var _subscriptions_menu2 = _interopRequireDefault(_subscriptions_menu);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10439,8 +10443,17 @@ var Main = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         { className: 'main' },
-        _react2.default.createElement(_nav_bar2.default, null),
-        _react2.default.createElement(_posts_index2.default, null)
+        _react2.default.createElement(
+          'header',
+          null,
+          _react2.default.createElement(_nav_bar2.default, null),
+          _react2.default.createElement(_subscriptions_menu2.default, null)
+        ),
+        _react2.default.createElement(
+          'main',
+          null,
+          _react2.default.createElement(_posts_index2.default, null)
+        )
       );
     }
   }]);
@@ -10465,9 +10478,9 @@ var _user = __webpack_require__(220);
 
 var _user2 = _interopRequireDefault(_user);
 
-var _unsorted_posts = __webpack_require__(241);
+var _posts = __webpack_require__(249);
 
-var _unsorted_posts2 = _interopRequireDefault(_unsorted_posts);
+var _posts2 = _interopRequireDefault(_posts);
 
 var _subreddits = __webpack_require__(242);
 
@@ -10483,13 +10496,13 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var reducers = (0, _redux.combineReducers)({
   user: _user2.default,
-  unsortedPosts: _unsorted_posts2.default,
+  posts: _posts2.default,
   subreddits: _subreddits2.default
 });
 
 var initialState = {
   user: {},
-  unsortedPosts: [],
+  posts: [],
   subreddits: []
 };
 
@@ -24123,24 +24136,20 @@ var NavBar = (_dec = (0, _reactRedux.connect)(function (store) {
 
       var name = this.props.user.name;
 
-      if (name) return _react2.default.createElement(
-        'nav',
-        null,
-        _react2.default.createElement(
+      var userNav = void 0;
+      if (name) {
+        userNav = _react2.default.createElement(
           'div',
           { className: 'user-name' },
           'Welcome, ',
           name,
           '!'
-        )
-      );
-      var loginClicked = function loginClicked() {
-        _this2.props.dispatch({ type: "USER_NAME_UPDATED", payload: "Jorge" });
-      };
-      return _react2.default.createElement(
-        'nav',
-        null,
-        _react2.default.createElement(
+        );
+      } else {
+        var loginClicked = function loginClicked() {
+          _this2.props.dispatch({ type: "USER_NAME_UPDATED", payload: "Jorge" });
+        };
+        userNav = _react2.default.createElement(
           'div',
           { className: 'log-reg' },
           _react2.default.createElement(
@@ -24153,7 +24162,28 @@ var NavBar = (_dec = (0, _reactRedux.connect)(function (store) {
             { onClick: console.log },
             'Register'
           )
-        )
+        );
+      }
+
+      return _react2.default.createElement(
+        'nav',
+        null,
+        _react2.default.createElement(
+          'div',
+          { className: 'logo' },
+          _react2.default.createElement('img', { src: 'https://cdn.worldvectorlogo.com/logos/reddit-2.svg' }),
+          _react2.default.createElement(
+            'span',
+            null,
+            'Reddit'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'search-bar' },
+          _react2.default.createElement('input', { type: 'search', defaultValue: 'Search Reddit...' })
+        ),
+        userNav
       );
     }
   }]);
@@ -24163,41 +24193,7 @@ var NavBar = (_dec = (0, _reactRedux.connect)(function (store) {
 exports.default = NavBar;
 
 /***/ }),
-/* 241 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function () {
-  var store = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
-  var action = arguments[1];
-
-  switch (action.type) {
-    case "ADD_POSTS":
-      store = store.concat(action.payload);
-      break;
-    case "ADD_POST":
-      store = store.concat(action.payload);
-      break;
-    case "DELETE_POST":
-      var findIdx = store.findIndex(function (post) {
-        return post.id == action.payload;
-      });
-      if (findIdx >= 0) store = store.splice(findIdx, 1);
-      break;
-    case "DELETE_ALL_POSTS":
-      store = [];
-      break;
-  }
-  return store;
-};
-
-/***/ }),
+/* 241 */,
 /* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24213,6 +24209,9 @@ exports.default = function () {
   var action = arguments[1];
 
   switch (action.type) {
+    case "ADD_SUBREDDITS":
+      state = state.concat(action.payload);
+      break;
     case "ADD_SUBREDDIT":
       state = state.concat(action.payload);
       break;
@@ -24221,36 +24220,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 243 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function () {
-  return function (dispatch) {
-    return fetch('./test/practice_all.json').then(function (res) {
-      return res.json();
-    }).then(function (json) {
-      dispatch({
-        type: "ADD_POSTS",
-        payload: (0, _parse_all2.default)(json)
-      });
-    });
-  };
-};
-
-var _parse_all = __webpack_require__(247);
-
-var _parse_all2 = _interopRequireDefault(_parse_all);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ }),
+/* 243 */,
 /* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -24275,6 +24245,18 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+function trimTitle(txt) {
+  var MAX_CHAR_COUNT = 75;
+  var splitTxt = txt.split(' '),
+      idx = 0,
+      trimmed = splitTxt[idx++];
+  while (idx < splitTxt.length && trimmed.length + splitTxt[idx].length < MAX_CHAR_COUNT) {
+    trimmed += " " + splitTxt[idx++];
+  }
+  if (trimmed.length > MAX_CHAR_COUNT || idx < splitTxt.length) trimmed = trimmed + "...";
+  return trimmed;
+}
 
 var Post = function (_React$Component) {
   _inherits(Post, _React$Component);
@@ -24301,21 +24283,41 @@ var Post = function (_React$Component) {
       var processedThumbnail = thumbnail.match(/https?:\/\/*/i) ? thumbnail : 'https://cdn.worldvectorlogo.com/logos/reddit-2.svg';
       return _react2.default.createElement(
         'div',
-        { className: 'post' },
+        { className: 'post group' },
         _react2.default.createElement(
           'a',
           { href: url, target: '_blank' },
-          _react2.default.createElement('img', { src: processedThumbnail }),
+          _react2.default.createElement('img', { src: processedThumbnail })
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'post-text' },
           _react2.default.createElement(
             'span',
             { className: 'title' },
-            title
+            _react2.default.createElement(
+              'a',
+              { href: url, target: '_blank' },
+              trimTitle(title)
+            )
           ),
           _react2.default.createElement(
             'span',
             { className: 'author' },
-            ' posted by ',
-            author
+            "posted by ",
+            _react2.default.createElement(
+              'a',
+              { href: "https://www.reddit.com/user/" + author,
+                target: '_blank' },
+              author
+            ),
+            " to ",
+            _react2.default.createElement(
+              'a',
+              { href: "https://www.reddit.com/r/" + subreddit,
+                target: '_blank' },
+              "/r/" + subreddit
+            )
           )
         )
       );
@@ -24353,9 +24355,9 @@ var _post2 = _interopRequireDefault(_post);
 
 var _reactRedux = __webpack_require__(96);
 
-var _fetch_unsorted_posts = __webpack_require__(243);
+var _fetch_posts = __webpack_require__(250);
 
-var _fetch_unsorted_posts2 = _interopRequireDefault(_fetch_unsorted_posts);
+var _fetch_posts2 = _interopRequireDefault(_fetch_posts);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24367,7 +24369,7 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var PostsIndex = (_dec = (0, _reactRedux.connect)(function (store) {
   return {
-    unsortedPosts: store.unsortedPosts
+    posts: store.posts
   };
 }), _dec(_class = function (_React$Component) {
   _inherits(PostsIndex, _React$Component);
@@ -24381,12 +24383,12 @@ var PostsIndex = (_dec = (0, _reactRedux.connect)(function (store) {
   _createClass(PostsIndex, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      this.props.dispatch((0, _fetch_unsorted_posts2.default)());
+      this.props.dispatch((0, _fetch_posts2.default)());
     }
   }, {
     key: 'render',
     value: function render() {
-      var posts = this.props.unsortedPosts.map(function (postJSON, idx) {
+      var posts = this.props.posts.map(function (postJSON, idx) {
         return _react2.default.createElement(_post2.default, { key: idx, post: postJSON });
       });
       return _react2.default.createElement(
@@ -24477,6 +24479,240 @@ var thunk = createThunkMiddleware();
 thunk.withExtraArgument = createThunkMiddleware;
 
 exports['default'] = thunk;
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  var store = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : [];
+  var action = arguments[1];
+
+  switch (action.type) {
+    case "ADD_POSTS":
+      store = store.concat(action.payload);
+      break;
+    case "ADD_POST":
+      store = store.concat(action.payload);
+      break;
+    case "DELETE_POST":
+      var findIdx = store.findIndex(function (post) {
+        return post.id == action.payload;
+      });
+      if (findIdx >= 0) store = store.splice(findIdx, 1);
+      break;
+    case "DELETE_ALL_POSTS":
+      store = [];
+      break;
+  }
+  return store;
+};
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  return function (dispatch) {
+    return fetch('https://www.reddit.com/r/all.json?limit=30').then(function (res) {
+      return res.json();
+    }).then(function (json) {
+      dispatch({
+        type: "ADD_POSTS",
+        payload: (0, _parse_all2.default)(json)
+      });
+    });
+  };
+};
+
+var _parse_all = __webpack_require__(247);
+
+var _parse_all2 = _interopRequireDefault(_parse_all);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 251 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  return function (dispatch) {
+    return dispatch({ type: "ADD_SUBREDDITS", payload: [{ name: 'sr1', amSubscribed: true, isShowing: false }, { name: 'funny', amSubscribed: false, isShowing: true }, { name: 'funny', amSubscribed: false, isShowing: true }, { name: 'funny', amSubscribed: false, isShowing: true }, { name: 'funny', amSubscribed: false, isShowing: true }, { name: 'funny', amSubscribed: false, isShowing: true }] });
+  };
+};
+
+/***/ }),
+/* 252 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(26);
+
+var _react2 = _interopRequireDefault(_react);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SubMenuItem = function (_React$Component) {
+  _inherits(SubMenuItem, _React$Component);
+
+  function SubMenuItem() {
+    _classCallCheck(this, SubMenuItem);
+
+    return _possibleConstructorReturn(this, (SubMenuItem.__proto__ || Object.getPrototypeOf(SubMenuItem)).apply(this, arguments));
+  }
+
+  _createClass(SubMenuItem, [{
+    key: "render",
+    value: function render() {
+      var _props$subreddit = this.props.subreddit,
+          name = _props$subreddit.name,
+          amSubscribed = _props$subreddit.amSubscribed,
+          isShowing = _props$subreddit.isShowing,
+          subscribe = amSubscribed ? "☒" : "+",
+          display = isShowing ? "-" : ">";
+
+
+      return _react2.default.createElement(
+        "div",
+        { className: "sr-menu-item" },
+        _react2.default.createElement(
+          "span",
+          { className: "sr-item-name" },
+          name
+        ),
+        _react2.default.createElement(
+          "button",
+          { className: "sr-subscribe" },
+          subscribe
+        ),
+        _react2.default.createElement(
+          "button",
+          { className: "sr-show" },
+          display
+        )
+      );
+    }
+  }]);
+
+  return SubMenuItem;
+}(_react2.default.Component);
+
+exports.default = SubMenuItem;
+
+/***/ }),
+/* 253 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _dec, _class;
+
+var _react = __webpack_require__(26);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _fetch_subreddits = __webpack_require__(251);
+
+var _fetch_subreddits2 = _interopRequireDefault(_fetch_subreddits);
+
+var _reactRedux = __webpack_require__(96);
+
+var _sub_menu_item = __webpack_require__(252);
+
+var _sub_menu_item2 = _interopRequireDefault(_sub_menu_item);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var SubscriptionsMenu = (_dec = (0, _reactRedux.connect)(function (store) {
+  return {
+    subreddits: store.subreddits
+  };
+}), _dec(_class = function (_React$Component) {
+  _inherits(SubscriptionsMenu, _React$Component);
+
+  function SubscriptionsMenu() {
+    _classCallCheck(this, SubscriptionsMenu);
+
+    return _possibleConstructorReturn(this, (SubscriptionsMenu.__proto__ || Object.getPrototypeOf(SubscriptionsMenu)).apply(this, arguments));
+  }
+
+  _createClass(SubscriptionsMenu, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      this.props.dispatch((0, _fetch_subreddits2.default)());
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var subMenuItems = this.props.subreddits.map(function (sub, idx) {
+        return _react2.default.createElement(_sub_menu_item2.default, { subreddit: sub, key: idx });
+      });
+      return _react2.default.createElement(
+        'section',
+        { className: 'subscrips-menu' },
+        _react2.default.createElement('input', { type: 'search', defaultValue: 'Search subreddits...' }),
+        _react2.default.createElement(
+          'div',
+          { className: 'sr-menu-items' },
+          subMenuItems
+        )
+      );
+    }
+  }]);
+
+  return SubscriptionsMenu;
+}(_react2.default.Component)) || _class);
+exports.default = SubscriptionsMenu;
 
 /***/ })
 /******/ ]);

@@ -1,19 +1,19 @@
 import React from 'react'
 import Post from './post'
 import { connect } from 'react-redux'
-import fetchUnsortedPosts from '../actions/fetch_unsorted_posts'
+import fetchPosts from '../actions/fetch_posts'
 
 @connect((store)=>{
   return {
-    unsortedPosts: store.unsortedPosts
+    posts: store.posts
   }
 })
 export default class PostsIndex extends React.Component {
   componentWillMount () {
-    this.props.dispatch(fetchUnsortedPosts())
+    this.props.dispatch(fetchPosts())
   }
   render () {
-    let posts = this.props.unsortedPosts.map((postJSON,idx) => {
+    let posts = this.props.posts.map((postJSON,idx) => {
       return <Post key={idx} post={postJSON} />
     });
     return (

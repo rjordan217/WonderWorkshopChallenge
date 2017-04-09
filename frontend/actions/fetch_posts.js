@@ -2,7 +2,7 @@ import parseAll from '../reddit_lib/parse_all'
 
 export default function() {
   return dispatch => {
-    return fetch('./test/practice_all.json')
+    return fetch('https://www.reddit.com/r/all.json?limit=30')
       .then(res => {return res.json()})
       .then(json => {
         dispatch({

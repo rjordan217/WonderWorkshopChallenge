@@ -1,0 +1,54 @@
+@import "variables";
+
+$sr-item-ht: 1.3em;
+
+.subscrips-menu {
+  position: fixed;
+  top: 3 * $top-bar-ht;
+  left: 0;
+  width: $sidebar-width;
+  padding: .3em;
+  border-radius: 0 .3em .3em 0;
+  background-color: orange;
+}
+
+.sr-menu-items {
+  background-color: #efefef;
+  margin-top: .3em;
+  min-height: 30vh;
+  max-height: 70vh;
+  padding: 0;
+  border-radius: .3em;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sr-menu-item {
+  line-height: $sr-item-ht;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  border-bottom: 1px solid black;
+  button {
+    padding: 0;
+    width: 1em;
+    height: $sr-item-ht;
+    text-align: center;
+    border-radius: 0;
+  }
+}
+
+.sr-item-name {
+  margin-right: auto;
+  margin-left: .3em;
+  width: 4em;
+}
+
+.sr-subscribe {
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+}
+
+.sr-show {
+
+}

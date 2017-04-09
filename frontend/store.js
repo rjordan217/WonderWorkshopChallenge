@@ -1,18 +1,18 @@
 import userReducer from './reducers/user'
-import unsortedPostsReducer from './reducers/unsorted_posts'
+import postsReducer from './reducers/posts'
 import subredditsReducer from './reducers/subreddits'
 import { combineReducers, applyMiddleware, createStore } from 'redux'
 import thunk from 'redux-thunk'
 
 const reducers = combineReducers({
   user: userReducer,
-  unsortedPosts: unsortedPostsReducer,
+  posts: postsReducer,
   subreddits: subredditsReducer
 })
 
 const initialState = {
   user: {},
-  unsortedPosts: [],
+  posts: [],
   subreddits: []
 }
 
