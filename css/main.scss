@@ -28,8 +28,30 @@ main {
 }
 
 input[type="search"] {
-  max-width: 100%;
+  color: #555;
   background-color: #efefef;
-  border-radius: .3em;
+  border-radius: .3em 0 0 .3em;
   padding: .1em;
+  &:focus {
+    color: inherit;
+  }
+}
+
+.search-bar {
+  display: flex;
+  justify-content: center;
+  input {
+    flex: 1 1 6em;
+  }
+  button {
+    padding: .2em;
+    flex: 0 0 2em;
+    height: $search-input-ht;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    background-image: url('../res/search_icon.svg');
+    background-size: 70% 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }

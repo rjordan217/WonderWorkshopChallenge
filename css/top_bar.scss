@@ -16,12 +16,34 @@ nav {
     align-items: center;
     width: 10em;
   }
+  .search-input {
+    box-sizing: border-box;
+    height: $search-input-ht;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+  .search-bttn {
+    box-sizing: border-box;
+    border-top: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+  }
+  img {
+    max-height: 100%;
+    width: auto;
+  }
 }
 
 .logo {
+  margin-left: 2em;
   justify-content: flex-start;
   img {
     width: auto;
     height: $top-bar-ht;
+  }
+  span {
+    font-size: 1.4em;
+    margin-left: .2em;
   }
 }

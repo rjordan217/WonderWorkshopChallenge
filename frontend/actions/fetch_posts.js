@@ -1,4 +1,4 @@
-import parseAll from '../reddit_lib/parse_all'
+import parseAll from '../reddit_lib/parse_all_posts'
 
 export default function() {
   return dispatch => {

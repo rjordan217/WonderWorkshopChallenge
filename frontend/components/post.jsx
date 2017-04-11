@@ -28,7 +28,8 @@ export default class Post extends React.Component {
         </a>
         <div className="post-text">
           <span className="title">
-            <a href={url} target="_blank">{trimTitle(title)}</a>
+            <a href={url} target="_blank"
+              dangerouslySetInnerHTML={{__html: trimTitle(title)}}></a>
           </span>
           <span className="author">
             {"posted by "}

@@ -1,3 +1,5 @@
+import { ALL_MY_SUBSCRIPS } from '../constants'
+
 export default function() {
   return dispatch => {
     return dispatch({type: "ADD_SUBREDDITS", payload: [

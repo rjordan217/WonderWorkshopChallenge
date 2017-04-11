@@ -2,6 +2,7 @@ import React from 'react'
 import fetchSubreddits from '../actions/fetch_subreddits'
 import { connect } from 'react-redux'
 import SubMenuItem from './sub_menu_item'
+import SearchBar from './search_bar'
 
 @connect((store) => {
   return {
@@ -19,7 +20,7 @@ export default class SubscriptionsMenu extends React.Component {
     })
     return (
       <section className="subscrips-menu">
-        <input type="search" defaultValue="Search subreddits..."/>
+        <SearchBar defVal="Search subreddits..." />
         <div className="sr-menu-items">
           {subMenuItems}
         </div>
