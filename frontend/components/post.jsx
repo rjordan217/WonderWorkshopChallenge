@@ -20,7 +20,7 @@ export default class Post extends React.Component {
       id, score, author, subreddit, thumbnail, url, title, num_comments
     } = this.props.post;
     let processedThumbnail = thumbnail.match(/https?:\/\/*/i) ?
-      thumbnail : 'https://cdn.worldvectorlogo.com/logos/reddit-2.svg';
+      thumbnail : './res/default_reddit.svg';
     return (
       <div className="post group">
         <a href={url} target="_blank">

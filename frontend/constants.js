@@ -1,10 +1,12 @@
 export const OAUTH_URI = "https://oauth.reddit.com";
 export const ALL_MY_SUBSCRIPS = "/subreddits/mine/subscriber";
-export const SEARCH_SUBS = "/api/search_subreddits";
+// export const SEARCH_SUBS = "/api/search_subreddits";
+export const SEARCH_PATH = "/search";
 export const USER_PATH = "/api/v1/me"
 export const ACCESS_TOKEN_URI = "https://www.reddit.com/api/v1/access_token";
 export const REFRESH_TOKEN_URI = "https://www.reddit.com/api/v1/access_token";
-export const APP_SCOPE = "identity mysubreddits read";
+export const REVOKE_TOKEN_URI = "https://www.reddit.com/api/v1/revoke_token";
+export const APP_SCOPE = "identity mysubreddits read subscribe";
 export const CLIENT_ID = "CtDAr5_MfgZqAg";
 export const REDIRECT_URI = "http://localhost:8080";
 

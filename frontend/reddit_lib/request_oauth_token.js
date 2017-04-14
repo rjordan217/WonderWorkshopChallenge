@@ -7,7 +7,6 @@ export default function (code) {
     'code': code,
     'redirect_uri': REDIRECT_URI
   }
-  console.log(JSON.stringify(reqParams));
   return fetch(
     ACCESS_TOKEN_URI,
     {
@@ -18,5 +17,5 @@ export default function (code) {
       },
       body: urlEncodeObject(reqParams)
     }
-  ).then(res => res.json())
+  ).then(res => res.json()).catch(e => {throw e})
 }

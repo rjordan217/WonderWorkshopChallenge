@@ -1,6 +1,7 @@
 @import "css_reset";
 @import "top_bar";
 @import "subscriptions_menu";
+@import "search_bar";
 @import "post";
 @import "variables";
 
@@ -21,37 +22,40 @@ button {
   padding: .5em;
   background-color: lightblue;
   border-radius: .2em;
+  user-select: none;
+}
+
+button:hover {
+  background-color: #ffbe68;
 }
 
 main {
-  margin: ($top-bar-ht + 1em) 0 0 $sidebar-width;
+  margin: ($top-bar-ttl + .5em) 0 0 $sidebar-width;
 }
 
-input[type="search"] {
-  color: #555;
-  background-color: #efefef;
-  border-radius: .3em 0 0 .3em;
-  padding: .1em;
-  &:focus {
-    color: inherit;
+.disp-errs {
+  background-color: orange;
+  border-radius: .3em;
+  padding: .3em;
+  position: fixed;
+  width: 30vw;
+  left: 35vw;
+  top: $top-bar-ttl;
+  margin: auto;
+}
+
+.loading-img {
+  width: auto;
+}
+
+@media (max-width: 800px) {
+  main {
+    margin: 0;
   }
 }
 
-.search-bar {
-  display: flex;
-  justify-content: center;
-  input {
-    flex: 1 1 6em;
-  }
-  button {
-    padding: .2em;
-    flex: 0 0 2em;
-    height: $search-input-ht;
-    border-top-left-radius: 0;
-    border-bottom-left-radius: 0;
-    background-image: url('../res/search_icon.svg');
-    background-size: 70% 70%;
-    background-repeat: no-repeat;
-    background-position: center;
+@media (min-width: 1400px) {
+  #root {
+    font-size: 28px;
   }
 }

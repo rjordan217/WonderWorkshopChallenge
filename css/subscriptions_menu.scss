@@ -1,15 +1,22 @@
 @import "variables";
 
 $sr-item-ht: 1.3em;
+$subscrips-pad: .3em;
 
 .subscrips-menu {
   position: fixed;
-  top: 3 * $top-bar-ht;
+  top: 2 * $top-bar-ttl;
   left: 0;
   width: $sidebar-width;
-  padding: .3em;
+  padding: $subscrips-pad;
   border-radius: 0 .3em .3em 0;
   background-color: orange;
+  z-index: 1;
+  .search-results {
+    position: fixed;
+    top: 2 * $top-bar-ttl + $search-input-ht + $subscrips-pad;
+    left: $subscrips-pad;
+  }
 }
 
 .sr-menu-items {
@@ -19,8 +26,13 @@ $sr-item-ht: 1.3em;
   max-height: 70vh;
   padding: 0;
   border-radius: .3em;
+  border: 1px solid black;
   overflow-y: auto;
   overflow-x: hidden;
+  .loading-img {
+    margin: 0 auto;
+    height: 2em;
+  }
 }
 
 .sr-menu-item {
@@ -35,8 +47,10 @@ $sr-item-ht: 1.3em;
     height: $sr-item-ht;
     text-align: center;
     border-radius: 0;
+    border-left: 1px solid black;
   }
 }
+
 
 .sr-item-name {
   margin-right: auto;
@@ -44,11 +58,21 @@ $sr-item-ht: 1.3em;
   width: 4em;
 }
 
-.sr-subscribe {
-  border-right: 1px solid black;
-  border-left: 1px solid black;
-}
-
-.sr-show {
-
+@media (max-width: 600px) {
+  .subscrips-menu {
+    width: 80vw;
+    transition: left 1s;
+    box-sizing: border-box;
+    &.collapsed {
+      left: -80vw;
+    }
+  }
+  .sb-clps {
+    border-radius: 0 .3em .3em 0;
+    background-color: orange;
+    padding: .3em 0;
+    position: absolute;
+    left: 80vw;
+    top: 1em;
+  }
 }

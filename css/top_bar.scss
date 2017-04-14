@@ -1,43 +1,52 @@
 @import "variables";
 
 nav {
+  z-index: 1;
   position: fixed;
   top: 0;
   right: 0;
   background-color: lightblue;
-  padding: .2em;
+  padding: $top-bar-pad;
   width: 100vw;
   height: $top-bar-ht;
   display: flex;
   justify-content: space-between;
+  transition: top 1s;
   div {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 10em;
-  }
-  .search-input {
-    box-sizing: border-box;
-    height: $search-input-ht;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-  }
-  .search-bttn {
-    box-sizing: border-box;
-    border-top: 1px solid black;
-    border-right: 1px solid black;
-    border-bottom: 1px solid black;
   }
   img {
     max-height: 100%;
     width: auto;
+  }
+  &.collapsed {
+    top: -$top-bar-ttl;
+  }
+}
+
+.nav-clps {
+  position: absolute;
+  left: 1em;
+  top: $top-bar-ttl;
+  padding: 0 .3em;
+  border-radius: 0 0 .3em .3em;
+}
+
+.user-name {
+  justify-content: flex-end;
+  img {
+    width: 2em;
+    cursor: pointer;
   }
 }
 
 .logo {
   margin-left: 2em;
   justify-content: flex-start;
+  user-select: none;
+  cursor: pointer;
   img {
     width: auto;
     height: $top-bar-ht;
@@ -45,5 +54,23 @@ nav {
   span {
     font-size: 1.4em;
     margin-left: .2em;
+  }
+}
+
+.login {
+  min-width: 3em;
+}
+
+@media (max-width: 800px) {
+  .logo {
+    margin-left: auto;
+    span {
+      display: none;
+    }
+  }
+  .user-name {
+    span {
+      display: none;
+    }
   }
 }

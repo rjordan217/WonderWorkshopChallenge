@@ -6,6 +6,9 @@ export default function(store = {}, action) {
     case "FETCHING_USER":
       store = {...store, isLoading: true}
       break;
+    case "LOGOUT_USER":
+      store = {}
+      break;
   }
   return store
 }
