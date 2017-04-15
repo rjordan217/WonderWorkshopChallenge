@@ -1,23 +1,36 @@
 export default function(store = {shown: false, srsWithPosts: []}, action) {
+  let srsWithPosts, idx, toEdit;
   switch (action.type) {
     case "DISPLAY_BY_SUBREDDIT":
       store = {...store, shown: true};
       break;
     case "SHOW_SUBREDDIT":
-      action.payload.isShowing = true;
-      let sr = {...action.payload, posts: [], isLoading: true}
-      store = {...store, srsWithPosts: srsWithPosts.unshift(sr)};
+      let sr = {...action.payload, all: [], isLoading: true};
+      store = {...store, srsWithPosts: store.srsWithPosts.concat(sr)};
+      break;
+    case "HIDE_SUBREDDIT":
+      store = {...store, srsWithPosts: store.srsWithPosts
+        .filter(sr => sr.name !== action.payload.name)};
+      store.shown = !!store.srsWithPosts.length
+      break;
+    case "CHANGE_SR_FILTER":
+      idx = store.srsWithPosts.findIndex(sr => sr.name == action.payload.name);
+      srsWithPosts.splice(idx,1,action.payload);
+      store = {...store, srsWithPosts}
       break;
     case "DELETE_ALL_POSTS":
       store = {...store, srsWithPosts: []};
       break;
     case "SHOW_MAIN":
-      store = {...store, shown: false};
+      store = {shown: false, srsWithPosts: []};
       break;
     case "FETCHED_SR_POSTS":
-      let toEdit = store.srsWithPosts.find(sr => sr.name == action.payload.srName)
-      toEdit.isLoading = false;
-      toEdit.posts = toEdit.posts.concat(action.payload.posts);
+      idx = store.srsWithPosts.findIndex(sr => sr.name == action.payload.name);
+      toEdit = {...store.srsWithPosts[idx], isLoading: false};
+      toEdit['all'] = toEdit.all.concat(action.payload)
+      srsWithPosts = store.srsWithPosts.slice();
+      srsWithPosts.splice(idx,1,toEdit);
+      store = {...store, srsWithPosts}
       break;
   }
   return store

@@ -53,7 +53,8 @@ export default class Main extends React.Component {
         </header>
         <ErrorDisplay />
         <main>
-          {showBy == 'sr' ? <SubredditsIndex srsWithPosts={bySubreddit} /> :
+          {showBy == 'sr' ? <SubredditsIndex dispatch={this.props.dispatch}
+          srsWithPosts={bySubreddit.srsWithPosts} /> :
           <PostsIndex posts={showBy == 'search' ? foundPosts : mainPosts}
             showBy={showBy} dispatch={this.props.dispatch.bind(this)} />}
         </main>

@@ -5,6 +5,7 @@ export default function(srJSON) {
     id,title,subscribers,header_img,
     name: url,
     amSubscribed: user_is_subscriber,
-    isShowing:false
+    isShowing:false,
+    filter: 'new'
   }
 }

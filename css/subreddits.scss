@@ -1,0 +1,101 @@
+@import "variables";
+
+$bg-color: orange;
+
+.srs-index {
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+
+.sr-item {
+  background-color: #efefef;
+  border-radius: .5em;
+  margin: .5em auto;
+  width: 90%;
+  display: block;
+  padding: .5em;
+  position: relative;
+}
+
+.sr-sbscrb,.sr-min {
+  position: absolute;
+  top: .5em;
+  border-radius: .5em;
+}
+
+.sr-sbscrb {
+  padding: .5em;
+  right: .5em;
+  width: 1px;
+  height: 1px;
+  background-color: orange;
+  background-image: url('../res/x_close.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.sr-min {
+  background-color: orange;
+  right: 1.7em;
+  width: 1em;
+  height: 1em;
+  text-align: center;
+  padding: 0;
+  box-sizing: border-box;
+  border: 2px solid black;
+}
+
+.sr-dets {
+  margin-left: .5em;
+  background-color: $bg-color;
+  border-radius: .5em .5em 0 0;
+  padding: .3em;
+  max-width: 60%;
+}
+
+.sr-name {
+  font-size: 2em;
+  float: right;
+  padding: .3em;
+}
+
+.sr-img {
+  &-container {
+    float: left;
+    padding: .3em;
+    max-height: 2.6em;
+  }
+  width: auto;
+  max-height: 100%;
+}
+
+.sr-posts-container {
+  padding: .3em;
+  background-color: $bg-color;
+  .posts-index {
+    display: block;
+    border-radius: .3em;
+    overflow-y: scroll;
+    max-height: 3 * $post-ht;
+  }
+  .post {
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    border-radius: 0;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: black;
+    &:first-child {
+      border-radius: .3em .3em 0 0;
+    }
+    &:last-child {
+      border-radius: 0 0 .3em .3em;
+      border-bottom-width: 1px;
+    }
+  }
+}

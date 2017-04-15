@@ -1,4 +1,5 @@
 export default function(store = { isLoading: false, all: [] }, action) {
+  let idx,all;
   switch (action.type) {
     case "FETCHING_SUBREDDITS":
       store = {...store, isLoading: true}
@@ -16,6 +17,23 @@ export default function(store = { isLoading: false, all: [] }, action) {
       store = {...store}
       let toUpdate = store.all.find(sr => sr.name == action.payload)
       toUpdate.amSubscribed = true;
+      break;
+    case "SHOW_SUBREDDIT":
+      idx = store.all.findIndex(sr => sr.name == action.payload.name),
+      all = store.all.slice();
+      all[idx] = {...all[idx], isShowing: true}
+      store = {...store, all}
+      break;
+    case "HIDE_SUBREDDIT":
+      idx = store.all.findIndex(sr => sr.name == action.payload.name),
+      all = store.all.slice();
+      all[idx] = {...all[idx], isShowing: false}
+      store = {...store, all}
+      break;
+    case "SHOW_MAIN":
+      store = {...store, all: store.all.map((sr) => {
+        return {...sr, isShowing: false}
+      })}
       break;
     case "LOGOUT_USER":
       store = { isLoading: false, all: [] }
