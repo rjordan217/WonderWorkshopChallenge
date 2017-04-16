@@ -61,7 +61,7 @@ export default class NavBar extends React.Component {
       userNav = (
         <div className="user-name">
           <span>Welcome, {name}!</span>
-          <img src="./res/logout.png" onClick={this._logout.bind(this)} />
+          <img src="./res/logout.png" onClick={this._logout.bind(this)} title="Logout"/>
         </div>
       );
     else if(isLoading)
@@ -86,7 +86,7 @@ export default class NavBar extends React.Component {
       <nav className={klasses}>
         <div className="logo" onClick={this._getMainPosts.bind(this)}>
           <img src="./res/default_reddit.svg" />
-          <span>RedditReacción</span>
+          <span>RedditReactive</span>
         </div>
         <SearchBar defVal="Search posts..." searchType="posts" />
         {userNav}

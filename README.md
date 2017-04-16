@@ -1,2 +1,3 @@
-# WonderWorkshopChallenge
-Redirect URI: https://rjordan217.github.io/coding_challenges/reddit_integrator.html
+# RedditReactive
+
+RedditReactive is a light-weight version of Reddit built with React with Redux architecture that allows users to manage their Reddit subscriptions with ease.

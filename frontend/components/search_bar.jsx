@@ -32,9 +32,9 @@ class SearchBar extends React.Component {
   }
   _submitSearch () {
     if(this._checkLoggedIn()) {
-      const { dispatch, searchParams, searchType } = this.props;
-      dispatch({type: "FETCHING_" + this.props.searchType.toUpperCase() + "_SEARCH"})
-      dispatch(fetchSearch(searchParams[searchType],searchType))
+      const { dispatch, searchType, searchParams } = this.props;
+      dispatch({type: "FETCHING_" + searchType.toUpperCase() + "_SEARCH"})
+      if(searchType == 'sr') dispatch(fetchSearch(searchParams[searchType], searchType));
     }
   }
   _submitIfEnter (e) {

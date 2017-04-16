@@ -17,7 +17,7 @@ function trimTitle(txt) {
 export default class Post extends React.Component {
   render () {
     const {
-      id, score, author, subreddit, thumbnail, url, title, num_comments
+      id, author, subreddit, thumbnail, url, title, permalink
     } = this.props.post;
     let processedThumbnail = thumbnail.match(/https?:\/\/*/i) ?
       thumbnail : './res/default_reddit.svg';
@@ -28,7 +28,7 @@ export default class Post extends React.Component {
         </a>
         <div className="post-text">
           <span className="title">
-            <a href={url} target="_blank"
+            <a href={'https://www.reddit.com' + permalink} target="_blank"
               dangerouslySetInnerHTML={{__html: trimTitle(title)}}></a>
           </span>
           <span className="author">

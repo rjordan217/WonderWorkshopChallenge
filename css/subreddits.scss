@@ -36,6 +36,10 @@ $bg-color: orange;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
+  transition: transform .25s;
+  &.not-subd {
+    transform: rotateZ(45deg);
+  }
 }
 
 .sr-min {
@@ -47,6 +51,16 @@ $bg-color: orange;
   padding: 0;
   box-sizing: border-box;
   border: 2px solid black;
+}
+
+.sr-sort-by {
+  position: absolute;
+  right: .5em;
+  top: 3em;
+  input {
+    margin-left: .2em;
+    margin-right: .1em;
+  }
 }
 
 .sr-dets {
@@ -75,6 +89,7 @@ $bg-color: orange;
 
 .sr-posts-container {
   padding: .3em;
+  border-radius: .3em;
   background-color: $bg-color;
   .posts-index {
     display: block;

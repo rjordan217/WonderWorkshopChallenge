@@ -31,7 +31,10 @@ button:hover {
 }
 
 main {
-  margin: ($top-bar-ttl + .5em) 0 0 $sidebar-width;
+  margin: $top-bar-ttl 0 0 $sidebar-width;
+  overflow-y: scroll;
+  height: 95vh;
+  height: calc(100vh - #{$top-bar-ttl});
 }
 
 .disp-errs {
@@ -47,6 +50,7 @@ main {
 
 .loading-img {
   width: auto;
+  margin: auto;
 }
 
 @media (max-width: 800px) {

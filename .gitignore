@@ -3,3 +3,5 @@
 /test
 /.sass-cache
 scraps.txt
+/frontend/bundle.js
+/frontend/bundle.js.map

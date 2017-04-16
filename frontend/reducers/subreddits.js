@@ -16,7 +16,7 @@ export default function(store = { isLoading: false, all: [] }, action) {
     case "SUBSCRIBE":
       store = {...store}
       let toUpdate = store.all.find(sr => sr.name == action.payload)
-      toUpdate.amSubscribed = true;
+      if(toUpdate) toUpdate.amSubscribed = true;
       break;
     case "SHOW_SUBREDDIT":
       idx = store.all.findIndex(sr => sr.name == action.payload.name),

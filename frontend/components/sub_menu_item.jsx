@@ -17,16 +17,30 @@ export default class SubMenuItem extends React.Component {
     }
   }
   render () {
-    const { name, amSubscribed, isShowing }  = this.props.subreddit,
-        subscribe = amSubscribed ? "☒" : "+",
-        display = isShowing ? "<" : ">";
+    const { name, amSubscribed, isShowing }  = this.props.subreddit;
+    let subIcon, showIcon, subHover, showHover
+    if(amSubscribed) {
+      subIcon = "☒"
+      subHover = "Unsubscribe"
+    } else {
+      subIcon = "+"
+      subHover = "Subscribe"
+    }
+    if(isShowing) {
+      showIcon = "<"
+      showHover = "Hide subreddit"
+    } else {
+      showIcon = ">"
+      showHover = "Show subreddit"
+    }
 
     return (
       <div className="sr-menu-item">
         <a className="sr-item-name">{name}</a>
-        <button className="sr-subscribe"
-          onClick={this._toggleSubscription.bind(this)}>{subscribe}</button>
-        <button className="sr-show" onClick={this._toggleShow.bind(this)}>{display}</button>
+        <button className="sr-subscribe" title={subHover}
+          onClick={this._toggleSubscription.bind(this)}>{subIcon}</button>
+        <button className="sr-show" title={showHover}
+          onClick={this._toggleShow.bind(this)}>{showIcon}</button>
       </div>
     );
   }

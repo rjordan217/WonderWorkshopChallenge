@@ -4,8 +4,10 @@ import urlEncodeObject from '../reddit_lib/url_encode_object'
 import parseAllSubreddits from '../reddit_lib/parse_all_subreddits'
 import parseAllPosts from '../reddit_lib/parse_all_posts'
 
-export default function(searchParams,searchType) {
+export default function(searchParams,searchType, after = "") {
   const opts = {...searchParams}
+
+  if(after) opts.after = after;
 
   let searchPath, actionType, parser;
   if(searchType == 'sr') {
