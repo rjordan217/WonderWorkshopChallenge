@@ -50,12 +50,11 @@ export default class SubscriptionsMenu extends React.Component {
 
     let klasses = "subscrips-menu",
         collapser;
-    if(window.isMobile) {
-      collapser = <button onClick={this._toggleShow.bind(this)} className="sb-clps">
-        {this.props.collapsed ? '→' : '←'}
-      </button>;
-      if(this.props.collapsed) klasses += " collapsed";
-    } else collapser = null;
+
+    collapser = <button onClick={this._toggleShow.bind(this)} className="sb-clps">
+      {this.props.collapsed ? '→' : '←'}
+    </button>;
+    if(this.props.collapsed) klasses += " collapsed";
 
     return (
       <section className={klasses}>

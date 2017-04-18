@@ -75,12 +75,10 @@ export default class NavBar extends React.Component {
       );
 
     let klasses = "", collapser;
-    if(window.isMobile) {
-      collapser = <button onClick={this._toggleShow.bind(this)} className="nav-clps">
-        {this.props.collapsed ? '↓' : '↑'}
-      </button>;
-      if(this.props.collapsed) klasses = "collapsed";
-    } else collapser = null;
+    collapser = <button onClick={this._toggleShow.bind(this)} className="nav-clps">
+      {this.props.collapsed ? '↓' : '↑'}
+    </button>;
+    if(this.props.collapsed) klasses = "collapsed";
 
     return (
       <nav className={klasses}>

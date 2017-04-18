@@ -32,6 +32,7 @@ nav {
   top: $top-bar-ttl;
   padding: 0 .3em;
   border-radius: 0 0 .3em .3em;
+  display: none;
 }
 
 .user-name {
@@ -63,7 +64,6 @@ nav {
 
 @media (max-width: 800px) {
   .logo {
-    margin-left: auto;
     span {
       display: none;
     }
@@ -72,5 +72,14 @@ nav {
     span {
       display: none;
     }
+  }
+  .nav-clps {
+    display: block;
+  }
+}
+
+@media (max-width: 400px) {
+  .logo {
+    margin-left: auto;
   }
 }

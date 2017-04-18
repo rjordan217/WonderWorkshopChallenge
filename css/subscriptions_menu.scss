@@ -58,6 +58,16 @@ $subscrips-pad: .3em;
   width: 4em;
 }
 
+.sb-clps {
+  border-radius: 0 .3em .3em 0;
+  background-color: orange;
+  padding: .3em 0;
+  position: absolute;
+  left: 80vw;
+  top: 1em;
+  display: none;
+}
+
 @media (max-width: 800px) {
   .subscrips-menu {
     width: 80vw;
@@ -68,11 +78,6 @@ $subscrips-pad: .3em;
     }
   }
   .sb-clps {
-    border-radius: 0 .3em .3em 0;
-    background-color: orange;
-    padding: .3em 0;
-    position: absolute;
-    left: 80vw;
-    top: 1em;
+    display: block;
   }
 }
